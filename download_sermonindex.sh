@@ -50,11 +50,16 @@ echo
 echo make a directory for all xml files and copy xml files into corresponding directory
 find . -name "*.xml" -exec sh -c 'mkdir "${1%.*}" ; mv "$1" "${1%.*}" ' _ {} \;
 echo  
-echo download everything by using wget
-for d in ./*/ ; do (cd "$d" && while read filename; do read url; wget -O $filename $url; done < *.xml); done
+echo make a list to recurse through
+echo  
+echo download everything by using youtube-dl
+#while read a; do (cd "$a"; while read filename; do read url; youtube-dl --download-archive done.log -o $filename $url --exec $
+for d in */ ; do (cd "$d"; while read filename; do read url; youtube-dl --download-archive done.log -o $filename $url --exec "$
 echo  
 echo delete xml files
 for d in ./*/ ; do (cd "$d" && rm *.xml); done
+echo delete log files
+for d in ./*/ ; do (cd "$d" && rm *.log); done
 #tell the user the process is finally over
 echo  
 echo  
