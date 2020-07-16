@@ -53,8 +53,7 @@ echo
 echo make a list to recurse through
 echo  
 echo download everything by using youtube-dl
-#while read a; do (cd "$a"; while read filename; do read url; youtube-dl --download-archive done.log -o $filename $url --exec $
-for d in */ ; do (cd "$d"; while read filename; do read url; youtube-dl --download-archive done.log -o $filename $url --exec "$
+for d in */ ; do (cd "$d"; while read filename; do read url; youtube-dl --download-archive done.log -o $filename $url --exec "rclone move {} sermonindex:$d -P --bwlimit 8M"; done < *.xml); done
 echo  
 echo delete xml files
 for d in ./*/ ; do (cd "$d" && rm *.xml); done
